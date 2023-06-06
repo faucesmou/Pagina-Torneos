@@ -1,24 +1,27 @@
 .Aside2ContainerMayor {
-  flex: 0 0 4cm; /* Establece el ancho fijo de 4 cm */
+  flex: 0 0 5cm; /* Establece el ancho fijo de 5 cm */
+  display: flex;
 }
-
-.Aside2ContainerMayor {
-    display: flex;
-    height: 100vh;
-    
-   /*  max-height: 100%; */
-    /*flex-wrap: wrap;  Ocupa toda la altura de la ventana */
+  .Aside2ContainerMayor {
+    flex-grow: 1;
+    min-width: 4cm; /* Ancho mínimo de 4 cm */
+    background-color: #333;
+    padding: 10px;
   }
-  
+
   .Aside2ContainerMenor {
+    flex-grow: 1;
     width: 4cm; /* Ancho de la columna de 5 cm */
     background-color: #333;
-    padding: 20px;
-    height: 100vh;
+    padding: 10px;
     display: flex;
     flex-direction: column;
   }
   
+  .indicadorImagen {
+    width: 10%;
+  }
+
   .menuAside {
     width: 100px; /* Ancho del icono del menú */
     height: 100px; /* Alto del icono del menú */
@@ -29,10 +32,22 @@
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
+    margin-bottom: 10px;
   }
   
+  .Aside2Listado {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.3;
+    
+  }
+
   .Aside2ListadoItem {
-    margin-bottom: 10px;
+    flex-grow: 0.3;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: 5px;
     /* Agrega aquí estilos adicionales para los elementos de la lista */
   }
   

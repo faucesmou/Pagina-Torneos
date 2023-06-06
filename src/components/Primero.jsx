@@ -27,8 +27,7 @@ function Primero() {
                 <div className="individual"></div>
                 <MDBBtn
                   /* onClick={handleClickIndividual} */ color="light"
-                  rippleColor="dark"
-                >
+                  rippleColor="dark">
                   No tengo equipo, pero quiero jugar!
                 </MDBBtn>
               </article>
@@ -38,9 +37,7 @@ function Primero() {
                 </div>
                 <MDBBtn
                   /* onClick={handleClickFamiliar} */ color="light"
-                  rippleColor="dark"
-                >
-                  Cargar equipo
+                  rippleColor="dark">Cargar equipo
                 </MDBBtn>
               </article>
             </section>

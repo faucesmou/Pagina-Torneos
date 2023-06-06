@@ -1,6 +1,8 @@
 
 .background-container {
   background-image: url('/public/images/basketball-2258651_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   /* ESTA PARTE ES IMPORTANTE: */
   display: flex;
   flex-wrap: wrap;
@@ -8,21 +10,18 @@
   /* align-items: stretch; recomendado por cristian*/ 
 }
 
-.PrimeroContainer{
-  flex: 1;
-}
+  
+    .PrimeroContainer {
+      flex: 1; /*  flex: 1; es una forma abreviada de establecer tres propiedades relacionadas con flexbox: flex-grow, flex-shrink y flex-basis.  */
+      flex-grow: 9999; /* Un número grande para ocupar todo el espacio disponible */
+      width: calc(100% - 4cm); /* Restar el ancho del aside */
+      padding: 20px;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.PrimeroContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-height: 100%;
-    width: 70%;
-    /* estilos adicionales para el fondo */
- /*    background-image: url('/public/images/basketball-2258651_1280.jpg');
-    background-size: cover; */
-  }
   
   .PrimeroContenido {
     display: flex;
@@ -34,7 +33,7 @@
   .primero-main {
     background-color: rgba(50, 49, 49, 0.781); /* Color de fondo semi-transparente */
     height: 225px;
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
