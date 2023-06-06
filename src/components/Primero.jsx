@@ -29,7 +29,7 @@ function Primero() {
                   /* onClick={handleClickIndividual} */ color="light"
                   rippleColor="dark"
                 >
-                  Cargar jugador individual
+                  No tengo equipo, pero quiero jugar!
                 </MDBBtn>
               </article>
               <article className="eleccion">

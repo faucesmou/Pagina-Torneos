@@ -1,6 +1,12 @@
 .Aside2ContainerMayor {
+  flex: 0 0 4cm; /* Establece el ancho fijo de 4 cm */
+}
+
+.Aside2ContainerMayor {
     display: flex;
     height: 100vh;
+    
+   /*  max-height: 100%; */
     /*flex-wrap: wrap;  Ocupa toda la altura de la ventana */
   }
   
@@ -8,6 +14,7 @@
     width: 4cm; /* Ancho de la columna de 5 cm */
     background-color: #333;
     padding: 20px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
   }

@@ -4,7 +4,12 @@
   /* ESTA PARTE ES IMPORTANTE: */
   display: flex;
   flex-wrap: wrap;
+/*   flex-direction: column; */
   /* align-items: stretch; recomendado por cristian*/ 
+}
+
+.PrimeroContainer{
+  flex: 1;
 }
 
 .PrimeroContainer {
@@ -12,7 +17,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 150vh;
+    max-height: 100%;
+    width: 70%;
     /* estilos adicionales para el fondo */
  /*    background-image: url('/public/images/basketball-2258651_1280.jpg');
     background-size: cover; */
@@ -22,7 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 60%;
   }
 
   .primero-main {
