@@ -1,26 +1,25 @@
-/* import Agregar from './pages/agregar.js'
-import Home from './pages/home.js' */
-import { BrowserRouter } from 'react-router-dom'
-/* import Nav from "./components/Navbar2.js" */
-import Primero from './components/Primero';
-import CollapsibleExample from './components/Navbar';
-import Aside2 from './components/Aside2';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import CollapsibleExample from "./components/Navbar";
 
+import RegistroPagina from "./pages/inscripciones/RegistroPagina";
 
 export default function App() {
   return (
-    <div>
+    <div className="background-container">
       <BrowserRouter>
-        <div className='background-container'>
+        <header>
+          {/* acá tengo que agregar el componente navbar para que se repita todas las veces*/}
           <CollapsibleExample />
-          <Aside2 />
-          <Primero />
-          
-{/*           <Route exact path="/" component={Home} />
-          <Route path="/agregar" component={Agregar} /> */}
-        </div>
+        </header>
+        {/* todo lo que esté dentro de BrowserRouter y fuera de Routes se va a repetir en todas las páginas o url */}
+
+        <Routes>
+          {/* Formulario Registro */}
+          <Route path="/" element={<Home />} />
+          <Route path="/registro" element={<RegistroPagina />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
 }
-

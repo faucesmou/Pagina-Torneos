@@ -1,0 +1,11 @@
+  .home h1{
+    color: var(--rojo);
+    font-size: var(--titulares);
+  }
+  
+
+  section {
+
+    width: 70%;
+    min-height: 100%;
+  }

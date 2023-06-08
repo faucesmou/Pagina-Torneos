@@ -1,75 +1,63 @@
-
-.background-container {
-  background-image: url('/public/images/basketball-2258651_1280.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* ESTA PARTE ES IMPORTANTE: */
+.PrimeroContainer {
+  width: calc(100% - 200px);
+  /* Restar el ancho del aside */
+  padding: 10px;
+  flex-direction: column;
   display: flex;
-  flex-wrap: wrap;
-/*   flex-direction: column; */
-  /* align-items: stretch; recomendado por cristian*/ 
+  align-items: center;
+  justify-content: center;
 }
 
-  
-    .PrimeroContainer {
-      flex: 1; /*  flex: 1; es una forma abreviada de establecer tres propiedades relacionadas con flexbox: flex-grow, flex-shrink y flex-basis.  */
-      flex-grow: 9999; /* Un número grande para ocupar todo el espacio disponible */
-      width: calc(100% - 4cm); /* Restar el ancho del aside */
-      padding: 20px;
-      flex-direction: column;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-  
-  .PrimeroContenido {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 60%;
-  }
+.PrimeroContenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
 
-  .primero-main {
-    background-color: rgba(50, 49, 49, 0.781); /* Color de fondo semi-transparente */
-    height: 225px;
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #f0c13e;
-  }
+.primero-main {
+  background-color: rgba(50, 49, 49, 0.781);
+  /* Color de fondo semi-transparente */
+  height: 225px;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f0c13e;
+}
 
-  .eleccion button {
-    color: #191815;
-    text-align: center;
-/*  quiero centrar los botones pero lo siguiente no funciona: 
+.eleccion button {
+  color: #191815;
+  text-align: center;
+  /*  quiero centrar los botones pero lo siguiente no funciona: 
     display: flex;
     flex-direction: column;
     align-items: center; */
-  }
-  
+}
 
-  .tablaPrimero {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin: 0 auto;
-    width: 100%;
-    margin-top: 150px;
-  }
 
-  .image-cell {
-    display: flex;
-    align-items: center;
-  }
-  
-  .image-cell img {
-    margin-right: 20px; /* Ajusta el valor según el espacio deseado */
-  }
+.tablaPrimero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 150px;
+}
 
-  
+.image-cell {
+  display: flex;
+  align-items: center;
+}
+
+.image-cell img {
+  margin-right: 20px;
+  /* Ajusta el valor según el espacio deseado */
+}
+
+
 
 /*   .primeroMensaje h1 {
     width: 90%;

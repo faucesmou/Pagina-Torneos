@@ -1,17 +1,14 @@
-.Aside2ContainerMayor {
-  flex: 0 0 5cm; /* Establece el ancho fijo de 5 cm */
-  display: flex;
-}
+
   .Aside2ContainerMayor {
-    flex-grow: 1;
-    min-width: 4cm; /* Ancho mínimo de 4 cm */
+    display: flex;
+    width: 200px ; /* Ancho mínimo de 4 cm */
     background-color: #333;
     padding: 10px;
   }
 
   .Aside2ContainerMenor {
     flex-grow: 1;
-    width: 4cm; /* Ancho de la columna de 5 cm */
+    width: 20%; /* Ancho de la columna de 4 cm */
     background-color: #333;
     padding: 10px;
     display: flex;
