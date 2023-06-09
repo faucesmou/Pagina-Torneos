@@ -16,3 +16,26 @@ input {
     justify-content: center;
   
 }
+
+.formulario {
+  max-width: 100%;
+  min-height: 70%;
+  margin-bottom: 20px;
+}
+
+.formulario-botones{ 
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  justify-content: space-evenly;
+}
+
+.volver-btn,
+.submit-btn{
+  transform: none !important;
+}
+
+/* no me toma el color hay uno superpuesto "label" que aun no encuentro */
+.label-formulario {
+  color: black
+}
