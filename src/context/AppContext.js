@@ -37,4 +37,5 @@ const useAppContext = () => useContext(AppContext);
 
 export { AppContextProvider, useAppContext };
 
-/* ESTO NO SE ESTÁ USANDO FUE UNA SUGERENCIA PREVIA QUE AL FINAL NO TOMÉ */
+/* ESTO NO SE ESTÁ USANDO FUE UNA SUGERENCIA PREVIA QUE AL FINAL NO TOMÉ 
+si ya estás utilizando Redux para crear un estado global en tu proyecto, es posible que no necesites utilizar el Context de React adicionalmente ya que Redux te proporciona una solución para compartir y manipular el estado global de manera eficiente.*/

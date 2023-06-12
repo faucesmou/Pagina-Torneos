@@ -5,6 +5,17 @@ import { NavLink } from "react-router-dom";
 import { actionTypes } from "../redux/store.js";
 import { useDispatch, useSelector } from 'react-redux';
 
+
+/* let fs = require('fs')
+let guardarJson = (array) => fs.writeFileSync('../data/usuariosRegistrados.json') , JSON.stringify(array,null,2 ) ,'utf-8');
+
+let usuario = {
+  titulo,
+  estado : 'pendiente'
+}
+usuarios.push(usuario)
+guardarJson(usuarios) */
+
 /*  importando los módulos necesarios para el componente. Esto incluye React y useState de React para manejar el estado local, componentes de interfaz de usuario de MDBReactUIKit y NavLink de react-router-dom para la navegación, actionTypes del almacenamiento Redux para disparar acciones y useDispatch y useSelector de react-redux para interactuar con el almacenamiento de Redux. */
 
 
@@ -36,22 +47,44 @@ const Formulario = () => {
     }));
   };
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = validateForm();
         if (Object.keys(validationErrors).length === 0) {
         if (isExistingUser(formData)) {
           setErrors({ existingUserError: "El usuario ingresado ya existe, por favor intente con otros datos" });
+          setFormSubmitted(false);
+          setFormData({
+            name: "",
+            email: "",
+            password: "",
+          });
           console.log("El usuario ingresado ya existe, por favor intente con otros datos");
+          
         } else {
                 // Guardar y/o agregar los datos del formulario en el estado global usando Redux
       dispatch({ type: actionTypes.ADD_USER, payload: formData });
-      console.log("Formulario enviado!");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
+      // Guardar los datos del formulario en el almacenamiento local ESTE: /* En este ejemplo, estamos usando localStorage.getItem para recuperar la lista existente de usuarios registrados del almacenamiento local y localStorage.setItem para guardar la lista actualizada de usuarios registrados en el almacenamiento local después de agregar un nuevo usuario. */
+        const existingUsers = JSON.parse(localStorage.getItem("usuariosRegistrados") || "[]");
+        existingUsers.push(formData);
+        localStorage.setItem("usuariosRegistrados", JSON.stringify(existingUsers));
+      console.log("Solicitud enviada con éxito!");
       setErrors({}); /* en esta línea setErrors({}) se usa para limpiar los errores de validación después de que el formulario se haya enviado correctamente..*/
+      setFormSubmitted(true);
+      console.log("este es mi localstorage: " + JSON.stringify(existingUsers));
       };
     } else {
       setErrors(validationErrors);
-      console.log("errores de validación: " + JSON.stringify(validationErrors))
+      console.log("errores de validación: " + JSON.stringify(validationErrors));
+      setFormSubmitted(false);
     } 
   
   };
@@ -128,6 +161,8 @@ const Formulario = () => {
           {errors.password && <span>{errors.password}</span>}
         </div>
         {errors.existingUserError && <span>{errors.existingUserError}</span>}
+        {formSubmitted && <span>Formulario de registro enviado con éxito!</span>}
+        
         <div className="formulario-botones">
           <MDBBtn color="light" rippleColor="dark" type="submit" className="submit-btn">
             Submit
