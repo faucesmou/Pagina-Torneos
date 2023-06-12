@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
-import { useAppContext } from "../context/AppContext.js";
+/* import { useAppContext } from "../context/AppContext.js"; */
 import { actionTypes } from "../redux/store.js";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+/*  importando los módulos necesarios para el componente. Esto incluye React y useState de React para manejar el estado local, componentes de interfaz de usuario de MDBReactUIKit y NavLink de react-router-dom para la navegación, actionTypes del almacenamiento Redux para disparar acciones y useDispatch y useSelector de react-redux para interactuar con el almacenamiento de Redux. */
 
 
 
 
 const Formulario = () => {
-  const { state } = useAppContext();
+  /* const { state } = useAppContext(); esta fue una opción pero la descarté*/
+  const state  = useSelector(state => state);
+  /* En Redux, el hook useSelector se utiliza para obtener el estado actual almacenado en el store de Redux. En esta línea, estoy utilizando useSelector para obtener el estado global de la aplicación y asignarlo a la constante state. */
   const dispatch = useDispatch();
+  /* En Redux, dispatch es una función que se utiliza para enviar acciones al store de Redux. La función useDispatch es un hook de react-redux que nos permite acceder a la función dispatch en los componentes de React.
+
+  Cuando llamo a useDispatch(), obtengo la instancia de la función dispatch que puedo utilizar para enviar acciones al store de Redux. Esta función se conecta automáticamente al store que he configurado previamente en la aplicación. */
+
+  /* Para utilizar dispatch, se puede llamar en el componente y pasarle un objeto de acción como argumento. El objeto de acción debe tener una propiedad type que indique el tipo de acción que se va a realizar. Puede tener una propiedad adicional llamada payload que contiene los datos adicionales necesarios para la acción. */
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,6 +45,7 @@ const Formulario = () => {
       console.log(state)
     } else {
       setErrors(validationErrors);
+      console.log("errores de validación: " + JSON.stringify(validationErrors))
     }
   };
 

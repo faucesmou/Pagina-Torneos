@@ -36,3 +36,5 @@ const AppContextProvider = ({ children }) => {
 const useAppContext = () => useContext(AppContext);
 
 export { AppContextProvider, useAppContext };
+
+/* ESTO NO SE ESTÁ USANDO FUE UNA SUGERENCIA PREVIA QUE AL FINAL NO TOMÉ */
