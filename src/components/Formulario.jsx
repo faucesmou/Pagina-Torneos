@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
 /* import { useAppContext } from "../context/AppContext.js"; */
@@ -27,6 +27,13 @@ const Formulario = () => {
   });
   const [errors, setErrors] = useState({});
 
+
+  /* La función de useEffect se ejecuta después de que el componente se haya renderizado en la pantalla. Si proporcionas una lista de dependencias, la función de efecto sólo se volverá a ejecutar si alguno de los valores en la lista de dependencias cambia. En este caso, estamos usando useEffect para escuchar cambios en el estado de Redux y mostrar su valor actualizado en la consola. La función de efecto simplemente muestra el valor actual del estado en la consola. La lista de dependencias contiene [state], lo que significa que la función de efecto sólo se volverá a ejecutar si el valor de state cambia.*/
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -39,10 +46,11 @@ const Formulario = () => {
     event.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      // Guardar los datos del formulario en el estado global usando Redux
-      dispatch({ type: actionTypes.SET_USER_DATA, payload: formData });
+      // Guardar y/o agregar los datos del formulario en el estado global usando Redux
+      dispatch({ type: actionTypes.ADD_USER, payload: formData });
       console.log("Formulario enviado!");
-      console.log(state)
+      setErrors({}); /* en esta línea setErrors({}) se usa para limpiar los errores de validación después de que el formulario se haya enviado correctamente. Si el formulario se envía y no hay errores de validación, entonces se despacha la acción para agregar un nuevo usuario al estado global y se limpian los errores de validación llamando a setErrors({}). */
+      /* console.log(state) este console log lo silenciamos ya que el estado se actualiza una vez se termina de renderizar el componente no es sincrónico sino asincrónico.*/
     } else {
       setErrors(validationErrors);
       console.log("errores de validación: " + JSON.stringify(validationErrors))
