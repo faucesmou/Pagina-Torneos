@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import CollapsibleExample from "./components/Navbar";
 
 import RegistroPagina from "./pages/inscripciones/RegistroPagina";
+import Indexlogin from "./pages/login/IndexLogin";
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
           {/* Formulario Registro */}
           <Route path="/" element={<Home />} />
           <Route path="/registro" element={<RegistroPagina />} />
+          <Route path="/login" element={<Indexlogin />} />
+
         </Routes>
       </BrowserRouter>
     </div>
