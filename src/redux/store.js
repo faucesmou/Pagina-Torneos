@@ -1,6 +1,5 @@
-import { createStore } from "redux";
-
 /* En esta línea, estás importando la función createStore de la biblioteca redux. Esta función se utiliza para crear el almacenamiento de Redux, que almacenará el estado global de tu aplicación. */
+import { createStore } from "redux";
 
 
 // Define los tipos de acción /* Aquí defines un objeto llamado actionTypes, que enumera los tipos de acciones que tu aplicación puede disparar. En este caso, solo hay un tipo de acción llamado "SET_USER_DATA". */
@@ -8,10 +7,9 @@ const actionTypes = {
   /* SET_USER_DATA: "SET_USER_DATA" */
   ADD_USER: "ADD_USER",
   LOGIN: "LOGIN",
-  LOGIN_SUCCESS: "LOGIN_SUCCESS"
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGOUT: "LOGOUT"
 };
-
-
 
 // Define el estado inicial/* Aquí defines el estado inicial de tu aplicación. En este caso, el estado inicial tiene una propiedad llamada userData que está inicializada como un array vacío []. */
 const initialState = {
@@ -37,6 +35,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           isLoggedIn: true,
         };
+        case actionTypes.LOGOUT:
+          return {
+            ...state,
+            isLoggedIn: false,
+          };
     default:
       return state;
   }
