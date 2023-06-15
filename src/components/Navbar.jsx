@@ -15,7 +15,9 @@ function CollapsibleExample() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Requisitos</Nav.Link>
+          <NavLink to="/novedades">
+          <Nav.Link href="#features">Novedades</Nav.Link>
+        </NavLink>      
             <Nav.Link href="#pricing">Inscripciones</Nav.Link>
             <NavDropdown title="Información" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Lo que hay que saber</NavDropdown.Item>
@@ -30,7 +32,9 @@ function CollapsibleExample() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">Más info</Nav.Link>
+          <NavLink to="/perfil">
+            <Nav.Link href="#deets">Perfil</Nav.Link>
+            </NavLink>
             <NavLink to="/login">
               <Nav.Link eventKey={2} href="#memes">
                 Iniciar Sesión

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, /* dispatch  */} from "react";
 import { useSelector } from 'react-redux';
+/* import { actionTypes } from '../redux/store'; *//////no es necesario acceder al objeto? se accede directamente a las funcionalidades de actionTypes??? 
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
 
@@ -23,6 +25,9 @@ export default function Login() {
             password: "",
           });
           setformFail(false);
+    // Establecer el valor de isLoggedIn en true en el estado global
+    dispatch({ type: 'LOGIN' });
+    /* dispatch({ type: 'LOGIN_SUCCESS' });  */
           
         } else {
           // El usuario no está registrado
@@ -59,7 +64,7 @@ export default function Login() {
       useEffect(() => {
         console.log(state);
       }, [state]);
-
+      const dispatch = useDispatch();
 
   return (
     <div className="col-md-5 offset-md-3 mt-5">
