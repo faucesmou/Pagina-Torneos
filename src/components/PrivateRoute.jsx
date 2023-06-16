@@ -3,10 +3,12 @@ import { Route, Navigate, Routes } from "react-router-dom";
 import Home from "./Home";
 import  Novedades  from "../pages/novedades/Novedades";
 import  Perfil  from "../pages/perfil/Perfil";
+import  RegistroPagina  from "../pages/inscripciones/RegistroPagina";
 
 
 
 const PrivateRoute = ({ children, ...props }) => {
+  
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
@@ -17,6 +19,7 @@ const PrivateRoute = ({ children, ...props }) => {
     <Route path="/novedades/*" element={<Novedades />} />
     <Route path="/*" element={<Home />} />
     <Route path="/perfil/*" element={<Perfil />} />
+    <Route path="/registro/*" element={<RegistroPagina />} />
     </Routes>
   </>
   );
