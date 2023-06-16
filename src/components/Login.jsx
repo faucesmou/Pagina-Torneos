@@ -102,7 +102,7 @@ export default function Login() {
               />
               <div className="invalid-feedback"></div>
             </div>
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" style={{ marginTop: '10px' }}>
               Login
             </button>       
           </form>

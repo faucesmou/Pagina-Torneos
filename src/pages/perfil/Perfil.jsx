@@ -1,5 +1,5 @@
 import Aside2 from '../../components/Aside2'
-import imagenFondoPerfil from '../../images/esquema-baloncesto.jpg'
+import imagenFondoPerfil from '../../images/rebotando-cancha.jpg'
 
 
 

@@ -3,7 +3,8 @@ import { Route, Navigate, Routes } from "react-router-dom";
 import Home from "./Home";
 import  Novedades  from "../pages/novedades/Novedades";
 import  Perfil  from "../pages/perfil/Perfil";
-import  RegistroPagina  from "../pages/inscripciones/RegistroPagina";
+import  RegistroPagina  from "../pages/registro/RegistroPagina";
+import  Inscripciones  from "../pages/inscripciones/Inscripciones";
 
 
 
@@ -20,6 +21,7 @@ const PrivateRoute = ({ children, ...props }) => {
     <Route path="/*" element={<Home />} />
     <Route path="/perfil/*" element={<Perfil />} />
     <Route path="/registro/*" element={<RegistroPagina />} />
+    <Route path="/inscripciones/*" element={<Inscripciones />} />
     </Routes>
   </>
   );

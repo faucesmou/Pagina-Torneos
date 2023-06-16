@@ -33,16 +33,19 @@ function Primero() {
                 </MDBBtn>
               </NavLink>
             </article>
+            <div className="individual"></div>
             <article className="eleccion">
               <div className="familiar">
                 <img src="" alt="" />
               </div>
+              <NavLink to="/login">
               <MDBBtn
                 /* onClick={handleClickFamiliar} */ color="light"
                 rippleColor="dark"
               >
                 Cargar equipo
               </MDBBtn>
+              </NavLink>
             </article>
           </section>
         </main>

@@ -35,6 +35,8 @@ input {
   transform: none !important;
 }
 
+
+
 /* no me toma el color hay uno superpuesto "label" que aun no encuentro */
 .label-formulario {
   color: black

@@ -17,24 +17,42 @@
 }
 
 .primero-main {
-  background-color: rgba(50, 49, 49, 0.781);
-  /* Color de fondo semi-transparente */
-  height: 225px;
+  height: 80px;
   width: 95%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #f0c13e;
+  justify-items: auto;
+  color: #021605;
+}
+
+.primeroMensaje {
+  /* Color de fondo semi-transparente */
+  background-color: rgba(192, 188, 188, 0.597);
+  min-height: 50%;
+  margin-top: 10%;
+}
+
+
+h1, p  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.eleccion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+ 
 }
 
 .eleccion button {
   color: #191815;
   text-align: center;
-  /*  quiero centrar los botones pero lo siguiente no funciona: 
-    display: flex;
-    flex-direction: column;
-    align-items: center; */
 }
 
 
@@ -44,7 +62,7 @@
   align-items: center;
   margin: 0 auto;
   width: 100%;
-  margin-top: 150px;
+  margin-top: 20px;
 }
 
 .image-cell {

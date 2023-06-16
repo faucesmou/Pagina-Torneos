@@ -1,0 +1,1 @@
+//en esta carpeta ASSETS se guardan todos los archivos que no sean javascript, html ni css. por ejemplo las imágenes. 
