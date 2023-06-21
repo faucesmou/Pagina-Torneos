@@ -38,7 +38,7 @@ function Primero() {
               <div className="familiar">
                 <img src="" alt="" />
               </div>
-              <NavLink to="/login">
+              <NavLink to="/inscripciones">
               <MDBBtn
                 /* onClick={handleClickFamiliar} */ color="light"
                 rippleColor="dark"

@@ -52,7 +52,9 @@ function CollapsibleExample() {
               <NavDropdown.Item href="#action/3.1">
                 Lo que hay que saber
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Propósito</NavDropdown.Item>
+              <NavLink to="/cargarresultados">
+              <NavDropdown.Item href="#action/3.2">Cargar Resultados</NavDropdown.Item>
+              </NavLink>
               <NavDropdown.Item href="#action/3.3">Básquet</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Historia</NavDropdown.Item>

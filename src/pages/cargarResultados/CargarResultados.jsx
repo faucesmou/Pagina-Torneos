@@ -1,5 +1,6 @@
 import Aside2 from "../../components/Aside2";
-import imagenFondoInscripciones from "../../images/aroPunto.jpg";
+import imagenFondoInscripciones from "../../images/canchaVerde.jpg";
+import database from "../../firebase";
 
 import React, { useState, useEffect } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
@@ -66,6 +67,17 @@ export default function Inscripciones() {
           nameJugadores:"",
           emailCapitan: "",
         });
+        // Guardar los datos del formulario en Firebase
+      database.ref("equipos").push(formData) // Reemplaza "ruta/a/los/datos" con la ubicación real en tu base de datos de Firebase
+      .then(() => {
+        console.log("Solicitud enviada a Firebase con éxito!");
+        setErrors({});
+      })
+      .catch((error) => {
+        console.log("Error al enviar la solicitud a Firebase: ", error);
+      });
+    
+  
         // Guardar los datos del formulario en el almacenamiento local ESTE: /* En este ejemplo, estamos usando localStorage.getItem para recuperar la lista existente de usuarios registrados del almacenamiento local y localStorage.setItem para guardar la lista actualizada de usuarios registrados en el almacenamiento local después de agregar un nuevo usuario. */
         const existingTeams = JSON.parse(
           localStorage.getItem("equiposRegistrados") || "[]"
@@ -76,6 +88,7 @@ export default function Inscripciones() {
           JSON.stringify(existingTeams)
         );
         console.log("Solicitud enviada con éxito!");
+        
         setErrors(
           {}
         );
@@ -121,17 +134,15 @@ export default function Inscripciones() {
     }
     if (formData.emailCapitan.trim() === "") {
       validationErrors.emailCapitan = "El Email del capitan es requerido";
-    } else if (!isValidEmail(formData.email)) {
-      validationErrors.email = "Formato de email inválido";
-    }
+    } 
     return validationErrors;
   };
 
-  const isValidEmail = (email) => {
-    // Lógica de validación de email (regex u otro método)
-    // Devuelve true si es válido, false en caso contrario
+/*   const isValidEmail = (email) => {
+    Lógica de validación de email (regex u otro método)
+  Devuelve true si es válido, false en caso contrario
     return true;
-  };
+  }; */
 
   return (
     <main
@@ -143,7 +154,7 @@ export default function Inscripciones() {
       }}
     >
       <div className="formulario-container">
-        <h2>Formulario de Inscripción</h2>
+        <h2>Carga de Resultados</h2>
         <form onSubmit={handleSubmit} className="formulario">
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -160,7 +171,7 @@ export default function Inscripciones() {
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
-              Nombre y apellido del capitán del equipo:
+              Puntos:
             </label>
             <input
               type="text"
@@ -173,7 +184,7 @@ export default function Inscripciones() {
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
-              Teléfono del capitán:
+              Partidos jugados:
             </label>
             <input
               type="text"
@@ -186,7 +197,7 @@ export default function Inscripciones() {
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
-              Nombre Completo, edad y DNI de los jugadores:
+             Partidos Ganados:
             </label>
             <input
               type="text"
@@ -199,7 +210,18 @@ export default function Inscripciones() {
           </div>
 
           <div>
-            <label htmlFor="email">Email del Capitán:</label>
+            <label htmlFor="email">Partidos Perdidos:</label>
+            <input
+              type="text"
+              id="email"
+              name="emailCapitan"
+              value={formData.emailCapitan}
+              onChange={handleChange}
+            />
+            {errors.email && <span>{errors.email}</span>}
+          </div>
+          <div>
+            <label htmlFor="email">Partidos Empatados:</label>
             <input
               type="email"
               id="email"

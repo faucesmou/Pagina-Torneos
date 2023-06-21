@@ -5,6 +5,7 @@ import  Novedades  from "../pages/novedades/Novedades";
 import  Perfil  from "../pages/perfil/Perfil";
 import  RegistroPagina  from "../pages/registro/RegistroPagina";
 import  Inscripciones  from "../pages/inscripciones/Inscripciones";
+import  CargarResultados  from "../pages/cargarResultados/CargarResultados";
 
 
 
@@ -22,6 +23,7 @@ const PrivateRoute = ({ children, ...props }) => {
     <Route path="/perfil/*" element={<Perfil />} />
     <Route path="/registro/*" element={<RegistroPagina />} />
     <Route path="/inscripciones/*" element={<Inscripciones />} />
+    <Route path="/cargarresultados/*" element={<CargarResultados />} />
     </Routes>
   </>
   );
