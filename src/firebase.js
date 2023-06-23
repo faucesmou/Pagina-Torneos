@@ -5,7 +5,7 @@ import 'firebase/compat/database';
 import { getAnalytics } from "firebase/analytics"; */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBhsHsymWI06RVODvyTfwa6b0ud9lFRfxc",
+  apiKey: "AIzaSyBhsHsymWI06RVODvyTfwa6b0ud9lFRfxc",
   authDomain: "torneo-ecd27.firebaseapp.com",
   databaseURL: "https://torneo-ecd27-default-rtdb.firebaseio.com",
   projectId: "torneo-ecd27",

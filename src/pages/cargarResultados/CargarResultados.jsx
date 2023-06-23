@@ -2,6 +2,7 @@ import Aside2 from "../../components/Aside2";
 import imagenFondoInscripciones from "../../images/canchaVerde.jpg";
 import database from "../../firebase";
 
+
 import React, { useState, useEffect } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
