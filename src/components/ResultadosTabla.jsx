@@ -23,6 +23,7 @@ function ResultadosTabla() {
       for (let key in data) {
         equiposArray.push(data[key]);
       }
+      equiposArray.sort((a, b) => b.puntos - a.puntos);
 
       setEquipos(equiposArray);
     });
@@ -79,69 +80,5 @@ function ResultadosTabla() {
 
 export default ResultadosTabla;
 
-
-
-/* import React, { useState, useEffect } from 'react';
-import database from "../../src/firebase";
-
-
-export default function ResultadosTabla() {
-    const [resultados, setResultados] = useState([]);
-    useEffect(() => {
-        // Aquí debes cargar los resultados desde Firebase y actualizar el estado 'resultados'
-        const resultadosRef = database.ref('resultados');
-
-  resultadosRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    const resultadosArray = [];
-
-    for (let key in data) {
-      resultadosArray.push(data[key]);
-    }
-
-    setResultados(resultadosArray);
-  });
-
-  // Importante: No olvides desuscribirte de los cambios al desmontar el componente
-  return () => {
-    resultadosRef.off('value');
-  };
-        
-      }, []);
-
-  return (
-    <div>
-    <div>ResultadosTabla</div>
-    <table>
-    <thead>
-      <tr>
-        <th>Equipo</th>
-        <th>Puntos</th>
-        <th>Partidos Jugados</th>
-        <th>Partidos Ganados</th>
-        <th>Partidos Perdidos</th>
-        <th>Partidos Empatados</th>
-      </tr>
-    </thead>
-    <tbody>
-      {resultados.map((equipo, index) => (
-        <tr key={index}>
-          <td>
-            <img src={equipo.logo} alt="Logo" />
-            {equipo.nombre}
-          </td>
-          <td>{equipo.puntos}</td>
-          <td>{equipo.partidosJugados}</td>
-          <td>{equipo.partidosGanados}</td>
-          <td>{equipo.partidosPerdidos}</td>
-          <td>{equipo.partidosEmpatados}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>  
-  </div> 
-  )
-}
- */
 
 
