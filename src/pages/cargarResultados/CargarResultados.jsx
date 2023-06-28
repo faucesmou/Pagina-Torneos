@@ -284,7 +284,7 @@ export default function Inscripciones() {
               value={formData.puntos}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.puntos && <span>{errors.puntos}</span>}
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -297,7 +297,7 @@ export default function Inscripciones() {
               value={formData.partidosJugados}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.partidosJugados && <span>{errors.partidosJugados}</span>}
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -310,7 +310,7 @@ export default function Inscripciones() {
               value={formData.partidosGanados}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.partidosGanados && <span>{errors.partidosGanados}</span>}
           </div>
 
           <div>
@@ -322,7 +322,7 @@ export default function Inscripciones() {
               value={formData.partidosPerdidos}
               onChange={handleChange}
             />
-            {errors.email && <span>{errors.email}</span>}
+            {errors.partidosPerdidos && <span>{errors.partidosPerdidos}</span>}
           </div>
           <div>
             <label htmlFor="email">Partidos Empatados:</label>
@@ -333,7 +333,7 @@ export default function Inscripciones() {
               value={formData.partidosEmpatados}
               onChange={handleChange}
             />
-            {errors.email && <span>{errors.email}</span>}
+            {errors.partidosEmpatados && <span>{errors.partidosEmpatados}</span>}
           </div>
           {errors.existingUserError && <span>{errors.existingUserError}</span>}
           {formSubmitted && (
