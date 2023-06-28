@@ -2,6 +2,7 @@ import React, { useState, useEffect, /* dispatch  */} from "react";
 import { useSelector } from 'react-redux';
 /* import { actionTypes } from '../redux/store'; *//////no es necesario acceder al objeto? se accede directamente a las funcionalidades de actionTypes??? 
 import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
 export default function Login() {
 
@@ -104,7 +105,12 @@ export default function Login() {
             </div>
             <button className="btn btn-primary" style={{ marginTop: '10px' }}>
               Login
-            </button>       
+            </button>
+            <NavLink to="/registro">
+            <button className="btn btn-primary" style={{ marginTop: '10px', marginLeft: '10px' }}>
+              Crear Nuevo Usuario
+            </button>    
+            </NavLink>   
           </form>
           <form  >
           {formSubmitted && <span style={{marginTop: '20px', display: 'block'}} >Bienvenido!</span>}

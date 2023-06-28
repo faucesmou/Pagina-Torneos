@@ -12,9 +12,10 @@ import firebase from 'firebase/compat/app';
 
 function ResultadosTabla() {
   const [equipos, setEquipos] = useState([]);
-
+  
   useEffect(() => {
     const equiposRef = firebase.database().ref('equipos');
+   
 
     equiposRef.on('value', (snapshot) => {
       const data = snapshot.val();
@@ -33,7 +34,7 @@ function ResultadosTabla() {
         equiposRef.off('value');
     };
   }, []);
-
+ 
   return (
     <div className="PrimeroContainer">
       <div className="PrimeroContenido">
@@ -61,7 +62,7 @@ function ResultadosTabla() {
                         className="rounded-circle"
                       />
                     </div>
-                    {equipo.nameEquipo}
+                    {equipo.nameEquipo} 
                   </th>
                   <td>{equipo.partidosJugados}</td>
                   <td>{equipo.partidosGanados}</td>

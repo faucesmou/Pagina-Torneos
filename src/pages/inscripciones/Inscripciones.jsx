@@ -7,6 +7,10 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionTypes } from "../../redux/store";
 
+
+import database from "../../firebase";
+
+
 export default function Inscripciones() {
   /* const { state } = useAppContext(); esta fue una opción pero la descarté*/
   const state = useSelector((state) => state);
@@ -20,6 +24,16 @@ export default function Inscripciones() {
     nameJugadores:"",
     emailCapitan: "",
   });
+
+  const [formData2, setFormData2] = useState({
+    nameEquipo: "",
+    puntos: "",
+    partidosJugados: "",
+    partidosGanados: "",
+    partidosEmpatados: "",
+    partidosPerdidos: "",
+  });
+
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -32,6 +46,12 @@ export default function Inscripciones() {
       ...prevData,
       [name]: value,
     }));
+    
+    setFormData2((prevFormData2) => ({
+      ...prevFormData2,
+      [name]: value,
+    }))
+
   };
 
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -59,6 +79,17 @@ export default function Inscripciones() {
       } else {
         // Guardar y/o agregar los datos del formulario en el estado global usando Redux
         dispatch({ type: actionTypes.ADD_USER, payload: formData });
+        
+        database
+          .ref("equipos")
+          .push(formData2) // Reemplaza "ruta/a/los/datos" con la ubicación real en tu base de datos de Firebase
+          .then(() => {
+            console.log("Solicitud enviada a Firebase con éxito!");
+            setErrors({});
+          })
+          .catch((error) => {
+            console.log("Error al enviar la solicitud a Firebase: ", error);
+          });
         setFormData({
           nameEquipo: "",
           nameCapitan: "",
@@ -156,7 +187,7 @@ export default function Inscripciones() {
               value={formData.nameEquipo}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.nameEquipo && <span>{errors.nameEquipo}</span>}
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -169,7 +200,7 @@ export default function Inscripciones() {
               value={formData.nameCapitan}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.nameCapitan && <span>{errors.nameCapitan}</span>}
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -182,7 +213,7 @@ export default function Inscripciones() {
               value={formData.telefonoCapitan}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.telefonoCapitan && <span>{errors.telefonoCapitan}</span>}
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -195,7 +226,7 @@ export default function Inscripciones() {
               value={formData.nameJugadores}
               onChange={handleChange}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.nameJugadores && <span>{errors.nameJugadores}</span>}
           </div>
 
           <div>
@@ -207,7 +238,7 @@ export default function Inscripciones() {
               value={formData.emailCapitan}
               onChange={handleChange}
             />
-            {errors.email && <span>{errors.email}</span>}
+            {errors.emailCapitan && <span>{errors.emailCapitan}</span>}
           </div>
           {errors.existingUserError && <span>{errors.existingUserError}</span>}
           {formSubmitted && (
