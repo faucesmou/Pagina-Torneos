@@ -80,6 +80,7 @@ const Formulario = () => {
       setErrors({}); /* en esta línea setErrors({}) se usa para limpiar los errores de validación después de que el formulario se haya enviado correctamente..*/
       setFormSubmitted(true);
       console.log("este es mi localstorage: " + JSON.stringify(existingUsers));
+      
       };
     } else {
       setErrors(validationErrors);
@@ -94,8 +95,6 @@ const Formulario = () => {
     return existingUsers.some(user => user.name === formData.name || user.email === formData.email);
   }
   
-
-
   const validateForm = () => {
     const validationErrors = {};
     if (formData.name.trim() === "") {

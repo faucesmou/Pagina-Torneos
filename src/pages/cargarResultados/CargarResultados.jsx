@@ -66,28 +66,15 @@ export default function Inscripciones() {
           partidosPerdidos: formData.partidosPerdidos,
           partidosEmpatados: formData.partidosEmpatados,
         });
-     
-          console.log("Solicitud enviada a Firebase con éxito!");
-          
+          console.log("Solicitud enviada a Firebase con éxito!");       
       }
-      /* database
-        .ref("equipos")
-        .push(formData) // Reemplaza "ruta/a/los/datos" con la ubicación real en tu base de datos de Firebase
-        .then(() => {
-          console.log("Solicitud enviada a Firebase con éxito!");
-          setErrors({});
-        })
-        .catch((error) => {
-          console.log("Error al enviar la solicitud a Firebase: ", error);
-        }); */
+  
 
       // REVISAR : Guardar los datos del formulario en el almacenamiento local ESTE: /* En este ejemplo, estamos usando localStorage.getItem para recuperar la lista existente de equipos registrados del almacenamiento local y localStorage.setItem para guardar la lista actualizada de equipos registrados en el almacenamiento local después de agregar un nuevo usuario. */ tengo que ver si guardo formData u otro objeto.
+      
       const existingTeams = JSON.parse(
         localStorage.getItem("equiposRegistrados") || "[]"
       );
-      existingTeams.push(formData);
-      localStorage.setItem("equiposRegistrados", JSON.stringify(existingTeams));
-      console.log("Solicitud enviada con éxito!");
 
       setErrors({});
       /* setFormData({}); */
@@ -181,47 +168,6 @@ export default function Inscripciones() {
     setEquipoSeleccionado(equipoSeleccionado);
   };
 
-  /* 
-  const [formData, setFormData] = useState({
-    equipo: null,
-    puntos: "",
-  });
-
-  
-  
-  const handleEquipoSeleccionado2 = (event) => {
-    const equipoId = event.target.value;
-    const equipoSeleccionado = equipos.find((equipo) => equipo.id === equipoId);
-    setFormData({
-      ...formData,
-      equipo: equipoSeleccionado,
-    });
-  };
-  
-    const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (formData.equipo) {
-      // Aquí puedes enviar los datos a la base de datos utilizando formData.equipo como referencia al equipo seleccionado
-      console.log("Equipo seleccionado:", formData.equipo);
-      console.log("Puntos:", formData.puntos);
-
-      // Restablecer el formulario después de enviar los datos
-      setFormData({
-        equipo: null,
-        puntos: "",
-      });
-    }
-  };
-  
-  */
-
   return (
     <main
       className="home"
@@ -259,20 +205,6 @@ export default function Inscripciones() {
       <span>{equipoSeleccionado.nameEquipo}</span>
     </div>
   )}
-
-          {/*             <div>
-              <label className="label-formulario" htmlFor="name">
-                Nombre del equipo:
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="nameEquipo"
-                value={formData.nameEquipo}
-                onChange={handleChange}
-              />
-              {errors.name && <span>{errors.name}</span>}
-            </div> */}
           <div>
             <label className="label-formulario" htmlFor="name">
               Puntos:
@@ -312,7 +244,6 @@ export default function Inscripciones() {
             />
             {errors.partidosGanados && <span>{errors.partidosGanados}</span>}
           </div>
-
           <div>
             <label htmlFor="email">Partidos Perdidos:</label>
             <input
