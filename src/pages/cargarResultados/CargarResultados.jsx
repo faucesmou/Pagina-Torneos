@@ -66,12 +66,11 @@ export default function Inscripciones() {
           partidosPerdidos: formData.partidosPerdidos,
           partidosEmpatados: formData.partidosEmpatados,
         });
-          console.log("Solicitud enviada a Firebase con éxito!");       
+        console.log("Solicitud enviada a Firebase con éxito!");
       }
-  
 
       // REVISAR : Guardar los datos del formulario en el almacenamiento local ESTE: /* En este ejemplo, estamos usando localStorage.getItem para recuperar la lista existente de equipos registrados del almacenamiento local y localStorage.setItem para guardar la lista actualizada de equipos registrados en el almacenamiento local después de agregar un nuevo usuario. */ tengo que ver si guardo formData u otro objeto.
-      
+
       const existingTeams = JSON.parse(
         localStorage.getItem("equiposRegistrados") || "[]"
       );
@@ -198,13 +197,13 @@ export default function Inscripciones() {
           </div>
 
           {equipoSeleccionado && (
-    <div>
-      <label className="label-formulario" htmlFor="name">
-        Equipo seleccionado:
-      </label>
-      <span>{equipoSeleccionado.nameEquipo}</span>
-    </div>
-  )}
+            <div>
+              <label className="label-formulario" htmlFor="name">
+                Equipo seleccionado:
+              </label>
+              <span>{equipoSeleccionado.nameEquipo}</span>
+            </div>
+          )}
           <div>
             <label className="label-formulario" htmlFor="name">
               Puntos:
@@ -264,7 +263,9 @@ export default function Inscripciones() {
               value={formData.partidosEmpatados}
               onChange={handleChange}
             />
-            {errors.partidosEmpatados && <span>{errors.partidosEmpatados}</span>}
+            {errors.partidosEmpatados && (
+              <span>{errors.partidosEmpatados}</span>
+            )}
           </div>
           {errors.existingUserError && <span>{errors.existingUserError}</span>}
           {formSubmitted && (

@@ -3,8 +3,10 @@ import { MDBBtn } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
 /* import { useAppContext } from "../context/AppContext.js"; */
 import { actionTypes } from "../redux/store.js";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
+import firebase from "firebase/compat/app";
+import databaseUsuarios from "../../src/firebase2.js";
 
 /* let fs = require('fs')
 let guardarJson = (array) => fs.writeFileSync('../data/usuariosRegistrados.json') , JSON.stringify(array,null,2 ) ,'utf-8');
@@ -18,22 +20,19 @@ guardarJson(usuarios) */
 
 /*  importando los módulos necesarios para el componente. Esto incluye React y useState de React para manejar el estado local, componentes de interfaz de usuario de MDBReactUIKit y NavLink de react-router-dom para la navegación, actionTypes del almacenamiento Redux para disparar acciones y useDispatch y useSelector de react-redux para interactuar con el almacenamiento de Redux. */
 
-
-
-
 const Formulario = () => {
   /* const { state } = useAppContext(); esta fue una opción pero la descarté*/
-  const state  = useSelector(state => state);
+  const state = useSelector((state) => state);
   /* En Redux, el hook useSelector se utiliza para obtener el estado actual almacenado en el store de Redux. En esta línea, estoy utilizando useSelector para obtener el estado global de la aplicación y asignarlo a la constante state. */
   const dispatch = useDispatch();
- 
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    equipo: "",
   });
   const [errors, setErrors] = useState({});
-
 
   useEffect(() => {
     console.log(state);
@@ -47,54 +46,120 @@ const Formulario = () => {
     }));
   };
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  //TRABAJANDO SOBRE LA SELECCIÓN DE EQUIPOS:
 
+  const [equipos, setEquipos] = useState([]);
+  const [equipoSeleccionado, setEquipoSeleccionado] = useState(null);
+
+  useEffect(() => {
+    const equiposRef = firebase.database().ref("equipos");
+
+    equiposRef.on("value", (snapshot) => {
+      const data = snapshot.val();
+      const equiposArray = [];
+
+      for (let key in data) {
+        equiposArray.push({ id: key, ...data[key] });
+      }
+
+      setEquipos(equiposArray);
+    });
+    return () => {
+      equiposRef.off("value");
+    };
+  }, []);
+
+  const handleEquipoSeleccionado = (event) => {
+    const equipoId = event.target.value;
+    const equipoSeleccionado = equipos.find((equipo) => equipo.id === equipoId);
+    setEquipoSeleccionado(equipoSeleccionado);
+    setFormData({
+      ...formData,
+      equipo: equipoSeleccionado ? equipoSeleccionado.nameEquipo : "",
+    });
+  };
+
+  //trabajando en el SUBMIT:
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = validateForm();
-        if (Object.keys(validationErrors).length === 0) {
-        if (isExistingUser(formData)) {
-          setErrors({ existingUserError: "El usuario ingresado ya existe, por favor intente con otros datos" });
-          setFormSubmitted(false);
-          setFormData({
-            name: "",
-            email: "",
-            password: "",
+    if (Object.keys(validationErrors).length === 0) {
+      if (isExistingUser(formData)) {
+        setErrors({
+          existingUserError:
+            "El usuario ingresado ya existe, por favor intente con otros datos",
+        });
+        setFormSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          equipo: "",
+        });
+        console.log(
+          "El usuario ingresado ya existe, por favor intente con otros datos"
+        );
+      } else {
+        // Guardar y/o agregar los datos del formulario en el estado global usando Redux
+        dispatch({ type: actionTypes.ADD_USER, payload: formData });
+        console.log("este es el STATE GLOBAL: ", state)
+
+        //envío datos de usuario a Firebase:
+
+        databaseUsuarios
+          .ref("usuarios")
+          .push(formData) // Reemplaza "ruta/a/los/datos" con la ubicación real en tu base de datos de Firebase
+          .then(() => {
+            console.log("Solicitud de Registro enviada a Firebase con éxito!");
+            setErrors({});
+          })
+          .catch((error) => {
+            console.log(
+              "Error al enviar la solicitud de Registro a Firebase: ",
+              error
+            );
           });
-          console.log("El usuario ingresado ya existe, por favor intente con otros datos");
-          
-        } else {
-                // Guardar y/o agregar los datos del formulario en el estado global usando Redux
-      dispatch({ type: actionTypes.ADD_USER, payload: formData });
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-      });
-      // Guardar los datos del formulario en el almacenamiento local ESTE: /* En este ejemplo, estamos usando localStorage.getItem para recuperar la lista existente de usuarios registrados del almacenamiento local y localStorage.setItem para guardar la lista actualizada de usuarios registrados en el almacenamiento local después de agregar un nuevo usuario. */
-        const existingUsers = JSON.parse(localStorage.getItem("usuariosRegistrados") || "[]");
+
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          equipo: "",
+        });
+        // Guardar los datos del formulario en el almacenamiento local ESTE: /* En este ejemplo, estamos usando localStorage.getItem para recuperar la lista existente de usuarios registrados del almacenamiento local y localStorage.setItem para guardar la lista actualizada de usuarios registrados en el almacenamiento local después de agregar un nuevo usuario. */
+        const existingUsers = JSON.parse(
+          localStorage.getItem("usuariosRegistrados") || "[]"
+        );
         existingUsers.push(formData);
-        localStorage.setItem("usuariosRegistrados", JSON.stringify(existingUsers));
-      console.log("Solicitud enviada con éxito!");
-      setErrors({}); /* en esta línea setErrors({}) se usa para limpiar los errores de validación después de que el formulario se haya enviado correctamente..*/
-      setFormSubmitted(true);
-      console.log("este es mi localstorage: " + JSON.stringify(existingUsers));
-      
-      };
+        localStorage.setItem(
+          "usuariosRegistrados",
+          JSON.stringify(existingUsers)
+        );
+        console.log("Solicitud enviada con éxito!");
+        setErrors(
+          {}
+        ); /* en esta línea setErrors({}) se usa para limpiar los errores de validación después de que el formulario se haya enviado correctamente..*/
+        setFormSubmitted(true);
+        console.log(
+          "este es mi localstorage: " + JSON.stringify(existingUsers)
+        );
+      }
     } else {
       setErrors(validationErrors);
       console.log("errores de validación: " + JSON.stringify(validationErrors));
       setFormSubmitted(false);
-    } 
-  
+    }
   };
 
-  const existingUsers = useSelector(state => state.userData);
+  const existingUsers = useSelector((state) => state.userData);
   const isExistingUser = (formData) => {
-    return existingUsers.some(user => user.name === formData.name || user.email === formData.email);
-  }
-  
+    return existingUsers.some(
+      (user) => user.name === formData.name || user.email === formData.email
+    );
+  };
+
   const validateForm = () => {
     const validationErrors = {};
     if (formData.name.trim() === "") {
@@ -111,6 +176,10 @@ const Formulario = () => {
       validationErrors.password =
         "La contraseña debe tener al menos 8 caracteres de largo";
     }
+    if (formData.equipo.trim() === "") {
+      validationErrors.equipo = "El equipo es requerido";
+    }
+
     return validationErrors;
   };
 
@@ -124,7 +193,7 @@ const Formulario = () => {
     <div className="formulario-container">
       <h2>Formulario de Registro</h2>
       <form onSubmit={handleSubmit} className="formulario">
-        <div>
+        <div className="input-container">
           <label className="label-formulario" htmlFor="name">
             Nombre completo:
           </label>
@@ -137,7 +206,7 @@ const Formulario = () => {
           />
           {errors.name && <span>{errors.name}</span>}
         </div>
-        <div>
+        <div className="input-container">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -148,7 +217,7 @@ const Formulario = () => {
           />
           {errors.email && <span>{errors.email}</span>}
         </div>
-        <div>
+        <div className="input-container">
           <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
@@ -160,10 +229,47 @@ const Formulario = () => {
           {errors.password && <span>{errors.password}</span>}
         </div>
         {errors.existingUserError && <span>{errors.existingUserError}</span>}
-        {formSubmitted && <span>Formulario de registro enviado con éxito!</span>}
-        
+        {formSubmitted && (
+          <span>Formulario de registro enviado con éxito!</span>
+        )}
+
+        <div className="input-container">
+          <label className="label-formulario" htmlFor="equipo">
+            Selecciona un equipo:
+          </label>
+          <select
+            value={equipoSeleccionado ? equipoSeleccionado.id : ""}
+            onChange={handleEquipoSeleccionado}
+          >
+            <option value="">Seleccionar equipo</option>
+            {equipos.map((equipo) => (
+              <option key={equipo.id} value={equipo.id}>
+                {equipo.nameEquipo}
+              </option>
+            ))}
+          </select>          
+        </div>
+        {errors.equipo && <span>{errors.equipo}</span>}
+        {equipoSeleccionado && (
+          <div>
+            <label className="label-formulario" htmlFor="name">
+              Equipo seleccionado:
+            </label>
+            <span>{equipoSeleccionado.nameEquipo}</span>
+          </div>
+        )}
+        <div className="formulario-boton-noTengoEquipo">
+        <MDBBtn color="light" rippleColor="dark" type="submit" className="btn">
+          No tengo equipo
+        </MDBBtn>
+        </div>
         <div className="formulario-botones">
-          <MDBBtn color="light" rippleColor="dark" type="submit" className="submit-btn">
+          <MDBBtn
+            color="light"
+            rippleColor="dark"
+            type="submit"
+            className="submit-btn"
+          >
             Submit
           </MDBBtn>
           <NavLink to="/">
