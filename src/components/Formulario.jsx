@@ -79,12 +79,33 @@ const Formulario = () => {
     });
   };
 
+//código para verificar si los datos ingresados ya existen en la base de datos: 
+
+const verificarUsuarioExistente = async (formData) => {
+  try {
+    const snapshot = await databaseUsuarios.ref("usuarios").once("value");
+    const usuarios = snapshot.val();
+    const existeUsuario = Object.values(usuarios).some(
+      (usuario) =>
+        usuario.email === formData.email ||
+        usuario.password === formData.password ||
+        usuario.name === formData.name
+    );
+    return existeUsuario;
+  } catch (error) {
+    console.log("Error al verificar el usuario en Firebase: ", error);
+    return false;
+  }
+};
+
+
   //trabajando en el SUBMIT:
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit =  async (event) => {
     event.preventDefault();
     const validationErrors = validateForm();
+    const usuarioExistente = await verificarUsuarioExistente(formData);
     if (Object.keys(validationErrors).length === 0) {
       if (isExistingUser(formData)) {
         setErrors({
@@ -101,7 +122,24 @@ const Formulario = () => {
         console.log(
           "El usuario ingresado ya existe, por favor intente con otros datos"
         );
-      } else {
+        //la siguiente línea usa "usuarioExistente" que viene de "verificarUsuarioExistente(formData)" en donde se consulta la base de datos para ver si existe ese usuario. 
+      } if (usuarioExistente) {
+    console.log("Usuario ya existe");
+    setErrors({
+      existingUserError:
+        "El usuario ingresado ya existe, por favor intente con otros datos",
+    });
+    setFormSubmitted(false);
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      equipo: "",
+    })
+    // Mostrar un mensaje de error en el formulario indicando que el usuario ya existe
+  } 
+      
+      else {
         // Guardar y/o agregar los datos del formulario en el estado global usando Redux
         dispatch({ type: actionTypes.ADD_USER, payload: formData });
         console.log("este es el STATE GLOBAL: ", state)
@@ -152,7 +190,7 @@ const Formulario = () => {
       setFormSubmitted(false);
     }
   };
-
+//esta parte del código es para consultar si el usuario existe ya registrado en el State: 
   const existingUsers = useSelector((state) => state.userData);
   const isExistingUser = (formData) => {
     return existingUsers.some(
