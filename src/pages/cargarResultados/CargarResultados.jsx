@@ -107,9 +107,9 @@ export default function Inscripciones() {
 
   const validateForm = () => {
     const validationErrors = {};
-    /*     if (formData.nameEquipo.trim() === "") {
+        if (formData.nameEquipo.trim() === "") {
       validationErrors.nameEquipo = "El nombre del equipo es requerido";
-    } */
+    }  
     if (formData.puntos.trim() === "") {
       validationErrors.puntos = "Los puntos del equipo son requeridos";
     }
@@ -165,6 +165,11 @@ export default function Inscripciones() {
     const equipoId = event.target.value;
     const equipoSeleccionado = equipos.find((equipo) => equipo.id === equipoId);
     setEquipoSeleccionado(equipoSeleccionado);
+    setFormData({
+      ...formData,
+      nameEquipo: equipoSeleccionado ? equipoSeleccionado.nameEquipo : "",
+    });
+
   };
 
   return (
@@ -195,7 +200,7 @@ export default function Inscripciones() {
               ))}
             </select>
           </div>
-
+          {errors.nameEquipo && <span>{errors.nameEquipo}</span>}
           {equipoSeleccionado && (
             <div>
               <label className="label-formulario" htmlFor="name">

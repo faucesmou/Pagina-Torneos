@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 
+import databaseUsuarios from "../../src/firebase2.js";
+
 export default function Login() {
 
     const handleLogin = (event) => {
@@ -12,14 +14,24 @@ export default function Login() {
         const username = event.target.username.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        // Obtener la lista de usuarios registrados del local storage
-        const existingUsers = JSON.parse(localStorage.getItem("usuariosRegistrados") || "[]");
-        // Verificar si el usuario ingresado se encuentra en la lista de usuarios registrados
-        const userExists = existingUsers.some(user => user.name === username && user.email === email && user.password === password);
-        if (userExists) {
-          // El usuario está registrado
-          console.log("El usuario está registrado");
-          setFormSubmitted(true);
+         //compararlos con la base de datos Firebase:
+         databaseUsuarios
+         .ref("usuarios")
+         .orderByChild("email")
+         .equalTo(email)
+         .once("value")
+         .then((snapshot) => {
+           const usuarios = snapshot.val();
+           if (usuarios) {
+             const usuarioEncontrado = Object.values(usuarios).find(
+               (usuario) =>
+                 usuario.name === username &&
+                 usuario.password === password &&
+                 usuario.email === email
+             );
+           if (usuarioEncontrado){
+            console.log("Inicio de sesión exitoso paadre y corroborado desde firebase");
+            setFormSubmitted(true);
           setFormData({
             username: "",
             email: "",
@@ -28,10 +40,46 @@ export default function Login() {
           setformFail(false);
     // Establecer el valor de isLoggedIn en true en el estado global
     dispatch({ type: 'LOGIN' });
+           }
+           else {
+            // El usuario no está registrado
+            console.log("El usuario no está registrado");
+            setFormSubmitted(false);
+            setformFail(true);
+            setFormData({
+              username: "",
+              email: "",
+              password: "",
+            });
+          }
+        };
+      })
+      .catch((error) => {
+        console.log("error al realizar el inicio de sesión")
+      });
+    }
+
+        // Obtener la lista de usuarios registrados del local storage
+     /*    const existingUsers = JSON.parse(localStorage.getItem("usuariosRegistrados") || "[]"); */
+        // Verificar si el usuario ingresado se encuentra en la lista de usuarios registrados
+        /* const userExists = existingUsers.some(user => user.name === username && user.email === email && user.password === password);
+        if (userExists) {
+          // El usuario está registrado
+          console.log("El usuario está registrado");
+          console.log("estos son mi usuarios del local storage: ", existingUsers)
+          setFormSubmitted(true);
+          setFormData({
+            username: "",
+            email: "",
+            password: "",
+          });
+          setformFail(false); */
+    // Establecer el valor de isLoggedIn en true en el estado global
+    /* dispatch({ type: 'LOGIN' }); */
     /* dispatch({ type: 'LOGIN_SUCCESS' });  */
           
-        } else {
-          // El usuario no está registrado
+        /* } else {
+         
           console.log("El usuario no está registrado");
           setFormSubmitted(false);
           setformFail(true);
@@ -41,7 +89,7 @@ export default function Login() {
             password: "",
           });
         }
-      }
+      } */
       //estado para mostrar cartel de bienvenida:
       const [formSubmitted, setFormSubmitted] = useState(false);
       //estado para mostrar cartel de usuario incorrecto: 
