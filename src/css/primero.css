@@ -1,7 +1,7 @@
 .PrimeroContainer {
   width: calc(100% - 200px);
   /* Restar el ancho del aside */
-  padding: 10px;
+  /* padding: 10px; */
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@
 
 .primeroMensaje {
   /* Color de fondo semi-transparente */
-  background-color: rgba(192, 188, 188, 0.597);
+  background-color: rgba(92, 86, 86, 0.301);
   min-height: 50%;
   margin-top: 10%;
 }
@@ -40,7 +40,9 @@ h1, p  {
   align-items: center;
   justify-content: center;
   margin-top: 5%;
+  color: black;
 }
+
 
 .eleccion {
   display: flex;

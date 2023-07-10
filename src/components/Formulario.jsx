@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 /* import { useAppContext } from "../context/AppContext.js"; */
 import { actionTypes } from "../redux/store.js";
 import { useDispatch, useSelector } from "react-redux";
+import imagenFondoRegistro from '../images/login.jpeg'
+
 
 import firebase from "firebase/compat/app";
 import databaseUsuarios from "../../src/firebase2.js";
@@ -228,7 +230,8 @@ const verificarUsuarioExistente = async (formData) => {
   };
 
   return (
-    <div className="formulario-container">
+    <div className="formulario-container" style={{ backgroundImage: `url(${imagenFondoRegistro})`, backgroundSize: 'cover', backgroundPosition: 'center center'  }}
+    >
       <h2>Formulario de Registro</h2>
       <form onSubmit={handleSubmit} className="formulario">
         <div className="input-container">
@@ -268,7 +271,7 @@ const verificarUsuarioExistente = async (formData) => {
         </div>
         {errors.existingUserError && <span>{errors.existingUserError}</span>}
         {formSubmitted && (
-          <span>Formulario de registro enviado con éxito!</span>
+          <span><h2 className="envioExito">Formulario de registro enviado con éxito!</h2></span>
         )}
 
         <div className="input-container">

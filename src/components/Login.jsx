@@ -4,9 +4,28 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 
+
+//importaciones useEffect y condicionales para cambiar el fondo en caso de un login exitoso:
+import imagenFondoRegistro from '../images/login.jpeg'
+import imagenFondoPerfil from '../images/esquema-baloncesto.jpg'
+
+
+
 import databaseUsuarios from "../../src/firebase2.js";
 
 export default function Login() {
+
+ //código para cambiar el fondo condicionalmente: 
+ const isLoggedIn = useSelector((state) => state.isLoggedIn);
+ const [backgroundImage, setBackgroundImage] = useState(imagenFondoRegistro);
+
+ useEffect(() => {
+   if (isLoggedIn) {
+     setBackgroundImage(imagenFondoPerfil);
+   } else {
+     setBackgroundImage(imagenFondoRegistro);
+   }
+ }, [isLoggedIn]);
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -116,7 +135,10 @@ export default function Login() {
       const dispatch = useDispatch();
 
   return (
-    <div className="col-md-5 offset-md-3 mt-5">
+    <div className="formulario-container" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center center'  }}
+    >
+      <div className="formulario">
+    <div className="">
       <div className="card">
         <h4 className="card-header">Login</h4>
         <div className="card-body">
@@ -161,11 +183,13 @@ export default function Login() {
             </NavLink>   
           </form>
           <form  >
-          {formSubmitted && <span style={{marginTop: '20px', display: 'block'}} >Bienvenido!</span>}
-          {formFail && <span style={{marginTop: '20px', display: 'block'}}>Usuario incorrecto</span>}
+          {formSubmitted && <span style={{marginTop: '20px', display: 'block', color: 'black' }} >Bienvenido!</span>}
+          {formFail && <span style={{marginTop: '20px', display: 'block', color: 'black'}}>Usuario incorrecto</span>}
           </form>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 }

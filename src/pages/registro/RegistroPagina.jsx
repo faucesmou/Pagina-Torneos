@@ -1,7 +1,7 @@
 import React from 'react';
 import Aside2 from '../../components/Aside2';
 import Formulario from '../../components/Formulario';
-import imagenFondoRegistro from '../../images/aro-noche3.jpg'
+import imagenFondoRegistro from '../../images/login.jpeg'
 
 
 

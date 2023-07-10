@@ -30,6 +30,7 @@
     font-weight: normal;
     margin-top: 20px;
     margin-bottom: 10px;
+    color: white
   }
   
   .Aside2Listado {
@@ -45,6 +46,7 @@
     justify-content: space-around;
     flex-direction: column;
     margin-bottom: 5px;
+    color: white;
     /* Agrega aquí estilos adicionales para los elementos de la lista */
   }
   
