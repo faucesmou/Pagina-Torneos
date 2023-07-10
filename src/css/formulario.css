@@ -41,11 +41,11 @@ input {
 
 
 h2, span{
-  color:white;
+  color:rgb(218, 11, 66);
 }
 
 .envioExito {
-  color: rgb(85, 181, 85);
+  color: rgb(218, 11, 66);
 }
 
 .label-formulario {

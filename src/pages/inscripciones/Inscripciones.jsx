@@ -2,11 +2,12 @@ import Aside2 from "../../components/Aside2";
 import imagenFondoInscripciones from "../../images/aroPunto.jpg";
 
 import React, { useState, useEffect } from "react";
-import { MDBBtn } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionTypes } from "../../redux/store";
 
+//nuevo botón para solucionar el problema de la transformación:
+import Button from 'react-bootstrap/Button';
 
 import database from "../../firebase";
 
@@ -230,7 +231,7 @@ export default function Inscripciones() {
           </div>
 
           <div>
-            <label htmlFor="email">Email del Capitán:</label>
+            <label className="label-formulario" htmlFor="name">Email del Capitán:</label>
             <input
               type="email"
               id="email"
@@ -242,22 +243,13 @@ export default function Inscripciones() {
           </div>
           {errors.existingUserError && <span>{errors.existingUserError}</span>}
           {formSubmitted && (
-            <span>Formulario de registro enviado con éxito!</span>
+            <span><h2>Formulario de inscripción enviado con éxito!</h2></span>
           )}
 
           <div className="formulario-botones">
-            <MDBBtn
-              color="light"
-              rippleColor="dark"
-              type="submit"
-              className="submit-btn"
-            >
-              Submit
-            </MDBBtn>
+            <Button variant="dark" type="submit" className="submit-btn">Submit</Button>
             <NavLink to="/">
-              <MDBBtn color="light" rippleColor="dark" className="volver-btn">
-                Volver
-              </MDBBtn>
+              <Button variant="dark" type="submit" className="volver-btn">Volver</Button>
             </NavLink>
           </div>
         </form>

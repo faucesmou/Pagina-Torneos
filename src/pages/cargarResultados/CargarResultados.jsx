@@ -4,10 +4,13 @@ import imagenFondoInscripciones from "../../images/canchaVerde.jpg";
 import firebase from "firebase/compat/app";
 
 import React, { useState, useEffect } from "react";
-import { MDBBtn } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionTypes } from "../../redux/store";
+
+
+//nuevo botón para solucionar el problema de la transformación:
+import Button from 'react-bootstrap/Button';
 
 export default function Inscripciones() {
   const state = useSelector((state) => state);
@@ -204,7 +207,7 @@ export default function Inscripciones() {
           {equipoSeleccionado && (
             <div>
               <label className="label-formulario" htmlFor="name">
-                Equipo seleccionado:
+                Equipo seleccionado:&nbsp;&nbsp;&nbsp;
               </label>
               <span>{equipoSeleccionado.nameEquipo}</span>
             </div>
@@ -249,7 +252,7 @@ export default function Inscripciones() {
             {errors.partidosGanados && <span>{errors.partidosGanados}</span>}
           </div>
           <div>
-            <label htmlFor="email">Partidos Perdidos:</label>
+            <label className="label-formulario" htmlFor="name">Partidos Perdidos:</label>
             <input
               type="text"
               id="name"
@@ -260,7 +263,7 @@ export default function Inscripciones() {
             {errors.partidosPerdidos && <span>{errors.partidosPerdidos}</span>}
           </div>
           <div>
-            <label htmlFor="email">Partidos Empatados:</label>
+            <label className="label-formulario" htmlFor="name">Partidos Empatados:</label>
             <input
               type="text"
               id="name"
@@ -274,22 +277,13 @@ export default function Inscripciones() {
           </div>
           {errors.existingUserError && <span>{errors.existingUserError}</span>}
           {formSubmitted && (
-            <span>Puntajes cargados en Firebase con éxito!</span>
+            <span><h2>Puntajes cargados en Firebase con éxito!</h2></span>
           )}
 
           <div className="formulario-botones">
-            <MDBBtn
-              color="light"
-              rippleColor="dark"
-              type="submit"
-              className="submit-btn"
-            >
-              Submit
-            </MDBBtn>
+            <Button variant="dark" type="submit" className="submit-btn">Submit</Button>
             <NavLink to="/">
-              <MDBBtn color="light" rippleColor="dark" className="volver-btn">
-                Volver
-              </MDBBtn>
+              <Button variant="dark" type="submit" className="volver-btn">Volver</Button>
             </NavLink>
           </div>
         </form>

@@ -1,9 +1,7 @@
 import React from "react";
-import {
-  /*   MDBBadge,*/
-  MDBBtn,
-} from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
 /* import Aside2 from "./Aside2"; */
 /* import primero from "../css/primero.css"; */ //Pregunta1: porque esto no se implementa?
 
@@ -23,12 +21,7 @@ function Primero() {
             <article className="eleccion">
               <div className="individual"></div>
               <NavLink to="/registro"> {/* aca va la url a la que quermos mandar al usuario */}
-                <MDBBtn
-                  /* onClick={handleClickIndividual} */ color="dark"
-                  rippleColor="light" className="text-white"
-                >
-                  Quiero jugar!
-                </MDBBtn>
+               <Button variant="dark" type="submit" className="text-light">Quiero jugar!</Button>
               </NavLink>
             </article>
             <div className="individual"></div>
@@ -37,12 +30,7 @@ function Primero() {
                 <img src="" alt="" />
               </div>
               <NavLink to="/inscripciones">
-              <MDBBtn
-                /* onClick={handleClickFamiliar} */ color="dark"
-                rippleColor="dark" className="text-white"
-              >
-                Cargar equipo
-              </MDBBtn>
+              <Button variant="dark" type="submit" className="text-light">Cargar equipo</Button>
               </NavLink>
             </article>
           </section>

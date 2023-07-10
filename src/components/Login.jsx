@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 
+//nuevo botón para solucionar el problema de la transformación:
+import Button from 'react-bootstrap/Button';
 
 //importaciones useEffect y condicionales para cambiar el fondo en caso de un login exitoso:
 import imagenFondoRegistro from '../images/login.jpeg'
@@ -137,10 +139,11 @@ export default function Login() {
   return (
     <div className="formulario-container" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center center'  }}
     >
-      <div className="formulario">
-    <div className="">
-      <div className="card">
-        <h4 className="card-header">Login</h4>
+    <div className="formulario">
+    <div className="card text-white bg-primary mb-3">
+      {/* este es el que aplica el estilo- revisar  */}
+      <div className="card .bg-gradient-light text-dark" >
+        <h4 className="card-header">Iniciar Sesión</h4>
         <div className="card-body">
           <form onSubmit={handleLogin} >
             <div className="form-group">
@@ -173,13 +176,12 @@ export default function Login() {
               />
               <div className="invalid-feedback"></div>
             </div>
-            <button className="btn btn-primary" style={{ marginTop: '10px' }}>
+            {/* <button className="btn btn-primary" style={{ marginTop: '10px' }}>
               Login
-            </button>
+            </button> */}
+            <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px'}} >Submit</Button>
             <NavLink to="/registro">
-            <button className="btn btn-primary" style={{ marginTop: '10px', marginLeft: '10px' }}>
-              Crear Nuevo Usuario
-            </button>    
+            <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px', marginLeft: '10px' }}>No tengo cuenta</Button>
             </NavLink>   
           </form>
           <form  >

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { MDBBtn } from "mdb-react-ui-kit";
+
 import { NavLink } from "react-router-dom";
 /* import { useAppContext } from "../context/AppContext.js"; */
 import { actionTypes } from "../redux/store.js";
 import { useDispatch, useSelector } from "react-redux";
 import imagenFondoRegistro from '../images/login.jpeg'
 
+//nuevo botón para solucionar el problema de la transformación:
+import Button from 'react-bootstrap/Button';
 
 import firebase from "firebase/compat/app";
 import databaseUsuarios from "../../src/firebase2.js";
@@ -276,7 +278,7 @@ const verificarUsuarioExistente = async (formData) => {
 
         <div className="input-container">
           <label className="label-formulario" htmlFor="equipo">
-            Selecciona un equipo:
+            Selecciona un equipo:&nbsp;&nbsp;&nbsp;
           </label>
           <select
             value={equipoSeleccionado ? equipoSeleccionado.id : ""}
@@ -294,29 +296,20 @@ const verificarUsuarioExistente = async (formData) => {
         {equipoSeleccionado && (
           <div>
             <label className="label-formulario" htmlFor="name">
-              Equipo seleccionado:
+              Equipo seleccionado:&nbsp;&nbsp;
             </label>
             <span>{equipoSeleccionado.nameEquipo}</span>
           </div>
         )}
         <div className="formulario-boton-noTengoEquipo">
-        <MDBBtn color="light" rippleColor="dark" type="submit" className="btn">
-          No tengo equipo
-        </MDBBtn>
+        
+        <Button variant="dark">No tengo equipo</Button>
         </div>
         <div className="formulario-botones">
-          <MDBBtn
-            color="light"
-            rippleColor="dark"
-            type="submit"
-            className="submit-btn"
-          >
-            Submit
-          </MDBBtn>
+          
+          <Button variant="dark" type="submit" className="submit-btn">Submit</Button>
           <NavLink to="/">
-            <MDBBtn color="light" rippleColor="dark" className="volver-btn">
-              Volver
-            </MDBBtn>
+            <Button variant="dark" type="submit" className="volver-btn">Volver</Button>
           </NavLink>
         </div>
       </form>
