@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 //importaciones useEffect y condicionales para cambiar el fondo en caso de un login exitoso:
 import imagenFondoRegistro from '../images/login.jpeg'
-import imagenFondoPerfil from '../images/esquema-baloncesto.jpg'
+import imagenFondoPerfil from '../images/sesionIniciada3.jpeg'
 
 
 
@@ -33,29 +33,29 @@ export default function Login() {
         event.preventDefault();
         // Obtener los valores ingresados por el usuario
         const username = event.target.username.value;
-        const email = event.target.email.value;
+       /*  const email = event.target.email.value; */
         const password = event.target.password.value;
          //compararlos con la base de datos Firebase:
          databaseUsuarios
          .ref("usuarios")
-         .orderByChild("email")
-         .equalTo(email)
-         .once("value")
+         /* .orderByChild("email")
+         .equalTo(email)*/
+         .once("value") 
          .then((snapshot) => {
            const usuarios = snapshot.val();
            if (usuarios) {
              const usuarioEncontrado = Object.values(usuarios).find(
                (usuario) =>
                  usuario.name === username &&
-                 usuario.password === password &&
-                 usuario.email === email
+                 usuario.password === password /* &&
+                 usuario.email === email */
              );
            if (usuarioEncontrado){
             console.log("Inicio de sesión exitoso paadre y corroborado desde firebase");
             setFormSubmitted(true);
           setFormData({
             username: "",
-            email: "",
+            /* email: "", */
             password: "",
           });
           setformFail(false);
@@ -69,7 +69,7 @@ export default function Login() {
             setformFail(true);
             setFormData({
               username: "",
-              email: "",
+              /* email: "", */
               password: "",
             });
           }
@@ -118,7 +118,7 @@ export default function Login() {
       //estado para borrar los campos al apretar submit:
       const [formData, setFormData] = useState({
         username: "",
-        email: "",
+        /* email: "", */
         password: "",
       });
       //función para guardar los campos y resetearlos al apretar submit:
@@ -139,15 +139,15 @@ export default function Login() {
   return (
     <div className="formulario-container" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center center'  }}
     >
-    <div className="formulario">
-    <div className="card text-white bg-primary mb-3">
+    <div className="formulario" >
+    <div className="card  mb-3" style={{backgroundColor: 'rgba(255, 255, 255, 0.6)'}} >
       {/* este es el que aplica el estilo- revisar  */}
-      <div className="card .bg-gradient-light text-dark" >
-        <h4 className="card-header">Iniciar Sesión</h4>
+      <div /* className="card bg-light mb-3 "  */ >
+        <h4 className="card-header" >Iniciar Sesión</h4>
         <div className="card-body">
           <form onSubmit={handleLogin} >
             <div className="form-group">
-              <label>Username</label>
+              <label class="text-dark">Username</label>
               <input
                 name="username"
                 type="text"
@@ -156,8 +156,8 @@ export default function Login() {
               />
               <div className="invalid-feedback"></div>
             </div>
-            <div className="form-group">
-              <label>Mail</label>
+         {/*    <div className="form-group">
+              <label class="text-dark">Mail</label>
               <input
                 name="email"
                 type="text"
@@ -165,9 +165,9 @@ export default function Login() {
                 onChange={handleChange}
               />
               <div className="invalid-feedback"></div>
-            </div>
+            </div> */}
             <div className="form-group">
-              <label>Password</label>
+              <label class="text-dark">Password</label>
               <input
                 name="password"
                 type="password"
@@ -179,7 +179,7 @@ export default function Login() {
             {/* <button className="btn btn-primary" style={{ marginTop: '10px' }}>
               Login
             </button> */}
-            <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px'}} >Submit</Button>
+            <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px', }} >Submit</Button>
             <NavLink to="/registro">
             <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px', marginLeft: '10px' }}>No tengo cuenta</Button>
             </NavLink>   

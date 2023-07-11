@@ -36,11 +36,11 @@ function ResultadosTabla() {
   }, []);
  
   return (
-    <div className="PrimeroContainer">
-      <div className="PrimeroContenido">
-        <div className="tablaPrimero">
+    <div className="PrimeroContainer" >
+      <div className="PrimeroContenido" >
+        <div className="tablaPrimero" >
           <MDBTable>
-            <MDBTableHead>
+            <MDBTableHead >
               <tr>
                 <th scope="col">Equipos</th>
                 <th scope="col">PJ</th>
@@ -50,7 +50,7 @@ function ResultadosTabla() {
                 <th scope="col">PT</th>
               </tr>
             </MDBTableHead>
-            <MDBTableBody>
+            <MDBTableBody >
               {equipos.map((equipo, index) => (
                 <tr key={index}>
                   <th scope="row" className="image-cell">
