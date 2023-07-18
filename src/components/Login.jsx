@@ -1,4 +1,4 @@
-import React, { useState, useEffect, /* dispatch  */} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 /* import { actionTypes } from '../redux/store'; *//////no es necesario acceder al objeto? se accede directamente a las funcionalidades de actionTypes??? 
 import { useDispatch } from 'react-redux';
@@ -52,7 +52,7 @@ export default function Login() {
              );
            if (usuarioEncontrado){
             console.log("Inicio de sesión exitoso paadre y corroborado desde firebase");
-            setFormSubmitted(true);
+            /* setFormSubmitted(true); */
           setFormData({
             username: "",
             /* email: "", */
@@ -65,7 +65,7 @@ export default function Login() {
            else {
             // El usuario no está registrado
             console.log("El usuario no está registrado");
-            setFormSubmitted(false);
+            /* setFormSubmitted(false); */
             setformFail(true);
             setFormData({
               username: "",
@@ -111,8 +111,8 @@ export default function Login() {
           });
         }
       } */
-      //estado para mostrar cartel de bienvenida:
-      const [formSubmitted, setFormSubmitted] = useState(false);
+      //estado para mostrar cartel de bienvenida (en desuso usé el use state login en cambio):
+      /* const [formSubmitted, setFormSubmitted] = useState(false); */
       //estado para mostrar cartel de usuario incorrecto: 
       const [formFail, setformFail] = useState(false);
       //estado para borrar los campos al apretar submit:
@@ -135,63 +135,61 @@ export default function Login() {
         console.log(state);
       }, [state]);
       const dispatch = useDispatch();
-
-  return (
-    <div className="formulario-container" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center center'  }}
-    >
-    <div className="formulario" >
-    <div className="card  mb-3" style={{backgroundColor: 'rgba(255, 255, 255, 0.6)'}} >
-      {/* este es el que aplica el estilo- revisar  */}
-      <div /* className="card bg-light mb-3 "  */ >
-        <h4 className="card-header" >Iniciar Sesión</h4>
-        <div className="card-body">
-          <form onSubmit={handleLogin} >
-            <div className="form-group">
-              <label class="text-dark">Username</label>
-              <input
-                name="username"
-                type="text"
-                value={formData.username}
-                onChange={handleChange}
-              />
-              <div className="invalid-feedback"></div>
+      return (
+        <div className="formulario-container" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center center' }}>
+          {!isLoggedIn ? (
+            <div className="formulario">
+              <div className="card mb-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
+                <div>
+                  <h4 className="card-header">Iniciar Sesión</h4>
+                  <div className="card-body">
+                    <form onSubmit={handleLogin}>
+                      <div className="form-group">
+                        <label className="text-dark">Username</label>
+                        <input
+                          name="username"
+                          type="text"
+                          value={formData.username}
+                          onChange={handleChange}
+                        />
+                        <div className="invalid-feedback"></div>
+                      </div>
+      
+                      <div className="form-group">
+                        <label className="text-dark">Password</label>
+                        <input
+                          name="password"
+                          type="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                        />
+                        <div className="invalid-feedback"></div>
+                      </div>
+      
+                      <Button variant="dark" type="submit" className="volver-btn" style={{ marginTop: '10px' }}>Submit</Button>
+                      <NavLink to="/registro">
+                        <Button variant="dark" type="submit" className="volver-btn" style={{ marginTop: '10px', marginLeft: '10px' }}>No tengo cuenta</Button>
+                      </NavLink>
+                    </form>
+                    {formFail && <span style={{ marginTop: '20px', display: 'block', color: 'black' }}>Usuario incorrecto</span>}
+                  </div>
+                </div>
+              </div>
             </div>
-         {/*    <div className="form-group">
-              <label class="text-dark">Mail</label>
-              <input
-                name="email"
-                type="text"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <div className="invalid-feedback"></div>
-            </div> */}
-            <div className="form-group">
-              <label class="text-dark">Password</label>
-              <input
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-              <div className="invalid-feedback"></div>
+          ) : (
+            <div className="formulario">
+              <div className="card mb-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
+                <div>
+                  <h2 className="card-header">Bienvenido perro!</h2>
+                  <div className="card-body">
+                    <span style={{ marginTop: '20px', display: 'block', color: 'black',fontSize: '18px' }}>Te invitamos a explorar la página</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* <button className="btn btn-primary" style={{ marginTop: '10px' }}>
-              Login
-            </button> */}
-            <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px', }} >Submit</Button>
-            <NavLink to="/registro">
-            <Button variant="dark" type="submit" className="volver-btn"style={{ marginTop: '10px', marginLeft: '10px' }}>No tengo cuenta</Button>
-            </NavLink>   
-          </form>
-          <form  >
-          {formSubmitted && <span style={{marginTop: '20px', display: 'block', color: 'black' }} >Bienvenido!</span>}
-          {formFail && <span style={{marginTop: '20px', display: 'block', color: 'black'}}>Usuario incorrecto</span>}
-          </form>
+          )}
         </div>
-      </div>
-    </div>
-    </div>
-    </div>
-  );
-}
+      );
+      
+    
+    }

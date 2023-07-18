@@ -25,6 +25,7 @@ function CollapsibleExample() {
   function handleLogout() {
     // Cambiar el estado global de redux a "false"
     dispatch({ type: "LOGOUT" });
+    
   }
 
   return (

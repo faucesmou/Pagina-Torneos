@@ -1,5 +1,5 @@
 import Aside2 from "../../components/Aside2";
-import imagenFondoInscripciones from "../../images/canchaVerde.jpg";
+import imagenFondoInscripciones from "../../images/estadio.jpg";
 
 import firebase from "firebase/compat/app";
 
@@ -209,7 +209,7 @@ export default function Inscripciones() {
               <label className="label-formulario" htmlFor="name">
                 Equipo seleccionado:&nbsp;&nbsp;&nbsp;
               </label>
-              <span>{equipoSeleccionado.nameEquipo}</span>
+              <span style={{fontSize: '25px', fontWeight: 'bold', color: 'red' }}>{equipoSeleccionado.nameEquipo}</span>
             </div>
           )}
           <div>
