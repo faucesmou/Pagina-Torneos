@@ -234,7 +234,7 @@ const verificarUsuarioExistente = async (formData) => {
   return (
     <div className="formulario-container" style={{ backgroundImage: `url(${imagenFondoRegistro})`, backgroundSize: 'cover', backgroundPosition: 'center center'  }}
     >
-      <h2>Formulario de Registro</h2>
+      <h2 className="title-formulario">Formulario de Registro</h2>
       <form onSubmit={handleSubmit} className="formulario">
         <div className="input-container">
           <label className="label-formulario" htmlFor="name">

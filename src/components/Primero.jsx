@@ -15,9 +15,9 @@ function Primero() {
       <div className="PrimeroContenido">
         <main className="primero-main">
           <section className="primeroMensaje">
-            <h1>Torneos Ginobili</h1>
-            <p style={{fontSize: '25px'}}>Inscripciones abiertas:</p>
-            <p style={{fontSize: '20px'}}>No tengo equipo, pero quiero jugar:</p>
+            <h1 style={{fontSize: '43px', color:'white'}}>Torneos Ginóbili</h1>
+            <p style={{fontSize: '35px', color:'red'}}>Inscripciones abiertas:</p>
+            <p style={{fontSize: '20px', color:'red'}}>No tengo equipo, pero quiero jugar:</p>
             <article className="eleccion">
               <div className="individual"></div>
               <NavLink to="/registro"> {/* aca va la url a la que quermos mandar al usuario */}

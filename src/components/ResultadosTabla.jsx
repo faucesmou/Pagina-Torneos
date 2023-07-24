@@ -35,13 +35,17 @@ function ResultadosTabla() {
     };
   }, []);
  
+  const styles = {
+    backgroundColor: "rgba(92, 86, 86, 0.314) !important "
+  };
+
   return (
     <div className="PrimeroContainer" >
       <div className="PrimeroContenido" >
         <div className="tablaPrimero" >
-          <MDBTable>
-            <MDBTableHead >
-              <tr>
+          <MDBTable style={styles}>
+            <MDBTableHead>
+              <tr >
                 <th scope="col">Equipos</th>
                 <th scope="col">PJ</th>
                 <th scope="col">PG</th>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Aside2 from './Aside2';
 import Primero from "./Primero";
-import imagenFondoHome from '../images/basketball-2258651_1280.jpg'
+import imagenFondoHome from '../images/pelotaOscuro.jpg'
 
 export default function Home() {
   return (

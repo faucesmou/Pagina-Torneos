@@ -185,7 +185,7 @@ export default function Inscripciones() {
       }}
     >
       <div className="formulario-container">
-        <h2>Carga de Resultados</h2>
+        <h2 class='title-formulario-carga-resultados'>Carga de Resultados</h2>
         <form onSubmit={handleSubmit} className="formulario">
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -209,7 +209,7 @@ export default function Inscripciones() {
               <label className="label-formulario" htmlFor="name">
                 Equipo seleccionado:&nbsp;&nbsp;&nbsp;
               </label>
-              <span style={{fontSize: '25px', fontWeight: 'bold', color: 'red' }}>{equipoSeleccionado.nameEquipo}</span>
+              <span className="label-formulario-CargaResultados-equipoSeleccionado" >{equipoSeleccionado.nameEquipo}</span>
             </div>
           )}
           <div>
@@ -260,7 +260,7 @@ export default function Inscripciones() {
               value={formData.partidosPerdidos}
               onChange={handleChange}
             />
-            {errors.partidosPerdidos && <span>{errors.partidosPerdidos}</span>}
+            {errors.partidosPerdidos && <span class='label-formulario-cargaResultados-PP'>{errors.partidosPerdidos}</span>}
           </div>
           <div>
             <label className="label-formulario" htmlFor="name">Partidos Empatados:</label>
@@ -272,7 +272,7 @@ export default function Inscripciones() {
               onChange={handleChange}
             />
             {errors.partidosEmpatados && (
-              <span>{errors.partidosEmpatados}</span>
+              <span class='label-formulario-cargaResultados-PE' >{errors.partidosEmpatados}</span>
             )}
           </div>
           {errors.existingUserError && <span>{errors.existingUserError}</span>}

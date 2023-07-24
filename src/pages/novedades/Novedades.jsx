@@ -6,7 +6,7 @@ import ResultadosTabla from '../../components/ResultadosTabla';
 
 //importaciones 
 
-import imagenFondoNovedades from '../../images/esquema-baloncesto.jpg'
+import imagenFondoNovedades from '../../images/saltoAlto.jpg'
 
 export default function Novedades() {
   return (

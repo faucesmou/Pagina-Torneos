@@ -1,5 +1,5 @@
 import Aside2 from "../../components/Aside2";
-import imagenFondoInscripciones from "../../images/aroPunto.jpg";
+import imagenFondoInscripciones from "../../images/mediaCancha.jpg";
 
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
@@ -175,7 +175,7 @@ export default function Inscripciones() {
       }}
     >
       <div className="formulario-container">
-        <h2>Formulario de Inscripción</h2>
+        <h2 class='title-formulario-inscripcion-equipo'>Formulario de Inscripción</h2>
         <form onSubmit={handleSubmit} className="formulario">
           <div>
             <label className="label-formulario" htmlFor="name">
@@ -217,7 +217,7 @@ export default function Inscripciones() {
             {errors.telefonoCapitan && <span>{errors.telefonoCapitan}</span>}
           </div>
           <div>
-            <label className="label-formulario" htmlFor="name">
+            <label className="label-formulario-jugadores" htmlFor="name">
               Nombre Completo, edad y DNI de los jugadores:
             </label>
             <input
@@ -231,7 +231,7 @@ export default function Inscripciones() {
           </div>
 
           <div>
-            <label className="label-formulario" htmlFor="name">Email del Capitán:</label>
+            <label className="label-formulario-mailCapitan" htmlFor="name">Email del Capitán:</label>
             <input
               type="email"
               id="email"

@@ -40,20 +40,68 @@ input {
 }
 
 
-h2, span{
-  color:rgb(218, 11, 66);
+span{
+  color:rgb(240, 15, 15);
+  font-size: 20px
 }
 
 .envioExito {
   color: rgb(218, 11, 66);
+  
+}
+
+.title-formulario {
+  font-size: 30px;
+  color:rgb(254, 11, 11);
+  color:rgba(0, 0, 0, 0.661);
 }
 
 .label-formulario {
   color: white;
   margin-top: 10px;
+  font-size: 20px;
 }
+
+.label-formulario-cargaResultados {
+  color: white;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.label-formulario-CargaResultados-equipoSeleccionado {
+  font-size: 25px;
+  
+  color: rgb(251, 44, 8);
+  background-color: rgba(0, 0, 0, 0.863);
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.label-formulario-mailCapitan, .label-formulario-jugadores  {
+  color: black;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.label-formulario-cargaResultados-PE, .label-formulario-cargaResultados-PP {
+  color: rgb(244, 233, 19);
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
 
 .input-container {
   margin-bottom: 10px;
   color: white;
+  font-size: 20px
+}
+
+.title-formulario-inscripcion-equipo {
+  color: white
+}
+
+.title-formulario-carga-resultados {
+  color: white
 }

@@ -31,17 +31,16 @@
   /* Color de fondo semi-transparente */
   background-color: rgba(92, 86, 86, 0.301);
   min-height: 50%;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
-
-h1, p  {
+.primero-main h1, .primero-main p {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 5%;
-  color: black;
 }
+
 
 
 .eleccion {
@@ -49,6 +48,7 @@ h1, p  {
   align-items: center;
   justify-content: center;
   margin-top: 5%;
+  margin-bottom:5%;
  
 }
 
@@ -65,6 +65,11 @@ h1, p  {
   margin: 0 auto;
   width: 100%;
   margin-top: 20px;
+}
+
+.tablaPrimero th, .tablaPrimero td {
+  background-color: rgba(251, 233, 233, 0.874);
+  /* Otros estilos específicos para los encabezados */
 }
 
 .image-cell {
